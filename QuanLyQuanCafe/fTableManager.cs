@@ -20,11 +20,13 @@ namespace QuanLyQuanCafe
         {
             InitializeComponent();
             LoadTable();
+            LoadCategory();
         }
 
         #region Method
         void LoadTable()
         {
+            flpTable.Controls.Clear();
             List<Table> tbList = TableDAO.Instace.LoadTableList();
             foreach(Table item in tbList)
             {
@@ -48,10 +50,10 @@ namespace QuanLyQuanCafe
 
         }
 
-        void ShowBill(int id)
+        void ShowBill(int idTable)
         {
             lsvBill.Items.Clear();
-            List<DTO.Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(id);
+            List<DTO.Menu> listBillInfo = MenuDAO.Instance.GetListMenuByTable(idTable);
 
             float totalPriceBill = 0;
 
@@ -75,6 +77,19 @@ namespace QuanLyQuanCafe
 
             txtTotalPriceBill.Text = totalPriceBill.ToString("c",culture);
         }
+        void LoadCategory()
+        {
+            List<Category> listCategory = CategoryDAO.Instance.GetListCategory();
+            cbbCategory.DataSource = listCategory;
+            cbbCategory.DisplayMember = "Name";
+
+        }
+        void LoadFoodListByCategory(int idCategory)
+        {
+            List<Food> listFood = FoodDAO.Instance.GetFoodsByCategoryID(idCategory);
+            cbbFood.DataSource = listFood;
+            cbbFood.DisplayMember = "Name";
+        }
 
         #endregion
 
@@ -83,28 +98,71 @@ namespace QuanLyQuanCafe
         private void Btn_Click(object sender, EventArgs e)
         {
             int tbId = ((sender as Button).Tag as Table).ID;
+            lsvBill.Tag = (sender as Button).Tag;
             ShowBill(tbId);
         }
-
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAccountFile f = new fAccountFile();
             f.ShowDialog();
 
         }
-
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
             f.ShowDialog();
 
         }
+        private void cbbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbb = sender as ComboBox;
+            if (cbb.SelectedItem == null)  return;
+            Category selected = cbb.SelectedItem as Category;
+            int id = selected.ID;
 
+            LoadFoodListByCategory(id);
+        }
+        private void btnAddFood_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUnCheckBillIdByTableID(table.ID);
+            int foodID = (cbbFood.SelectedItem as Food).ID;
+            int count = (int)nmrFoodCount.Value;
+
+            if (idBill == -1)
+            {
+                BillDAO.Instance.InsertBill(table.ID);
+                BillInfoDAO.Instance.InsertBillInfo(BillDAO.Instance.GetMaxIDBill(), foodID, count);
+            }
+            else
+            {
+                BillInfoDAO.Instance.InsertBillInfo(idBill, foodID, count);
+            }
+            ShowBill(table.ID);
+            LoadTable();
+
+        }
+        private void btnCheckOut_Click(object sender, EventArgs e)
+        {
+            Table table = lsvBill.Tag as Table;
+            int idBill = BillDAO.Instance.GetUnCheckBillIdByTableID(table.ID);
+            int discount = (int)nmrDiscount.Value;
+            if(idBill!=-1)
+            {
+                if(MessageBox.Show("Bạn muốn thanh toán bàn " + table.ID,"Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    BillDAO.Instance.CheckOut(idBill, discount);
+                    ShowBill(table.ID);
+                    LoadTable();
+                }
+            }
+        }
         #endregion
+
+
     }
 }

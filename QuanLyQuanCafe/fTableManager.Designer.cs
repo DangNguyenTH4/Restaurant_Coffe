@@ -39,27 +39,27 @@
             this.lsvBill = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtTotalPriceBill = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnSwitchTable = new System.Windows.Forms.Button();
             this.nmrDiscount = new System.Windows.Forms.NumericUpDown();
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnCheckOut = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.numFoodCount = new System.Windows.Forms.NumericUpDown();
+            this.nmrFoodCount = new System.Windows.Forms.NumericUpDown();
             this.btnAddFood = new System.Windows.Forms.Button();
             this.cbbFood = new System.Windows.Forms.ComboBox();
             this.cbbCategory = new System.Windows.Forms.ComboBox();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.txtTotalPriceBill = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrDiscount)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numFoodCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrFoodCount)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -141,6 +141,16 @@
             this.columnHeader2.Text = "Số lượng";
             this.columnHeader2.Width = 57;
             // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Đơn giá";
+            this.columnHeader3.Width = 63;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Thành tiền";
+            this.columnHeader4.Width = 67;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.txtTotalPriceBill);
@@ -153,6 +163,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(336, 51);
             this.panel3.TabIndex = 2;
+            // 
+            // txtTotalPriceBill
+            // 
+            this.txtTotalPriceBill.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalPriceBill.Location = new System.Drawing.Point(164, 16);
+            this.txtTotalPriceBill.Name = "txtTotalPriceBill";
+            this.txtTotalPriceBill.ReadOnly = true;
+            this.txtTotalPriceBill.Size = new System.Drawing.Size(94, 22);
+            this.txtTotalPriceBill.TabIndex = 7;
+            this.txtTotalPriceBill.Text = "0";
             // 
             // comboBox1
             // 
@@ -201,10 +221,11 @@
             this.btnCheckOut.TabIndex = 3;
             this.btnCheckOut.Text = "Thanh toán";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            this.btnCheckOut.Click += new System.EventHandler(this.btnCheckOut_Click);
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.numFoodCount);
+            this.panel4.Controls.Add(this.nmrFoodCount);
             this.panel4.Controls.Add(this.btnAddFood);
             this.panel4.Controls.Add(this.cbbFood);
             this.panel4.Controls.Add(this.cbbCategory);
@@ -213,18 +234,18 @@
             this.panel4.Size = new System.Drawing.Size(336, 51);
             this.panel4.TabIndex = 1;
             // 
-            // numFoodCount
+            // nmrFoodCount
             // 
-            this.numFoodCount.Location = new System.Drawing.Point(178, 27);
-            this.numFoodCount.Minimum = new decimal(new int[] {
+            this.nmrFoodCount.Location = new System.Drawing.Point(178, 27);
+            this.nmrFoodCount.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             -2147483648});
-            this.numFoodCount.Name = "numFoodCount";
-            this.numFoodCount.Size = new System.Drawing.Size(76, 20);
-            this.numFoodCount.TabIndex = 3;
-            this.numFoodCount.Value = new decimal(new int[] {
+            this.nmrFoodCount.Name = "nmrFoodCount";
+            this.nmrFoodCount.Size = new System.Drawing.Size(76, 20);
+            this.nmrFoodCount.TabIndex = 3;
+            this.nmrFoodCount.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -238,6 +259,7 @@
             this.btnAddFood.TabIndex = 2;
             this.btnAddFood.Text = "Thêm món";
             this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // cbbFood
             // 
@@ -254,6 +276,7 @@
             this.cbbCategory.Name = "cbbCategory";
             this.cbbCategory.Size = new System.Drawing.Size(168, 21);
             this.cbbCategory.TabIndex = 0;
+            this.cbbCategory.SelectedIndexChanged += new System.EventHandler(this.cbbCategory_SelectedIndexChanged);
             // 
             // flpTable
             // 
@@ -262,26 +285,6 @@
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(453, 480);
             this.flpTable.TabIndex = 3;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Đơn giá";
-            this.columnHeader3.Width = 63;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Thành tiền";
-            this.columnHeader4.Width = 67;
-            // 
-            // txtTotalPriceBill
-            // 
-            this.txtTotalPriceBill.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalPriceBill.Location = new System.Drawing.Point(164, 16);
-            this.txtTotalPriceBill.Name = "txtTotalPriceBill";
-            this.txtTotalPriceBill.ReadOnly = true;
-            this.txtTotalPriceBill.Size = new System.Drawing.Size(94, 22);
-            this.txtTotalPriceBill.TabIndex = 7;
-            this.txtTotalPriceBill.Text = "0";
             // 
             // fTableManager
             // 
@@ -304,7 +307,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrDiscount)).EndInit();
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numFoodCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrFoodCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +328,7 @@
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Button btnCheckOut;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.NumericUpDown numFoodCount;
+        private System.Windows.Forms.NumericUpDown nmrFoodCount;
         private System.Windows.Forms.Button btnAddFood;
         private System.Windows.Forms.ComboBox cbbFood;
         private System.Windows.Forms.ComboBox cbbCategory;

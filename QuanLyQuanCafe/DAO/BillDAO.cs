@@ -31,7 +31,7 @@ namespace QuanLyQuanCafe.DAO
         /// <param name="id"></param>
         /// <returns></returns>
         public int GetUnCheckBillIdByTableID(int idTable)
-        {
+         {
             string query = "select * from dbo.Bill where  idTable =" + idTable + " and statuss = 0";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             if (data.Rows.Count > 0)
@@ -56,5 +56,32 @@ namespace QuanLyQuanCafe.DAO
             return -1;
         }
         
+
+        public void InsertBill(int idTable)
+        {
+            try
+            {
+                string query = "exec USP_InsertBill @idTable";
+                DataProvider.Instance.ExecuteNonQuery(query, new object[] { idTable });
+            }
+            catch { }
+        }
+        public int GetMaxIDBill()
+        {
+            int result = 0;
+            string query = "select MAX(id) from dbo.Bill";
+            try
+            {
+                result = (int)DataProvider.Instance.ExecuteScala(query);
+            }
+            catch { return 1; }
+            return result;
+
+        }
+        public void CheckOut(int idBill, int discount)
+        {
+            string query = "update dbo.Bill set statuss = 1, discount = " + discount +" where id = " + idBill;
+            DataProvider.Instance.ExecuteNonQuery(query);
+        }
     }
 }
