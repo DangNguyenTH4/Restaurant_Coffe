@@ -78,10 +78,15 @@ namespace QuanLyQuanCafe.DAO
             return result;
 
         }
-        public void CheckOut(int idBill, int discount)
+        public void CheckOut(int idBill, int discount, float totalPrice)
         {
-            string query = "update dbo.Bill set statuss = 1, discount = " + discount +" where id = " + idBill;
+            string query = "update dbo.Bill set dateCheckOut = GetDate(), statuss = 1, discount = " + discount +" , totalPrice =  " + totalPrice +" where id = " + idBill;
             DataProvider.Instance.ExecuteNonQuery(query);
+        }
+
+        public DataTable GetListBillByDate(DateTime checkIn, DateTime checkOut)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec USP_GetListBillByDate @checkIn , @checkOut", new object[] { checkIn, checkOut });
         }
     }
 }

@@ -16,14 +16,38 @@ namespace QuanLyQuanCafe
 {
     public partial class fTableManager : Form
     {
-        public fTableManager()
+        private Account loginAccount;
+        public Account LoginAccount
+        {
+            get
+            {
+                return loginAccount;
+            }
+            set
+            {
+                loginAccount = value;
+                ChangeAccount(loginAccount.Type);
+            }
+        }
+        public fTableManager(Account loginAccount)
         {
             InitializeComponent();
+            LoginAccount = loginAccount;
             LoadTable();
             LoadCategory();
         }
 
+        Table focusTable;
+        Button focusButton;
+
+        
+
         #region Method
+        void ChangeAccount(int type)
+        {
+            adminToolStripMenuItem.Enabled = type == 1;
+            thôngTinTàiKhoảnToolStripMenuItem.Text += " (" + LoginAccount.DisplayName + ")";
+        }
         void LoadTable()
         {
             flpTable.Controls.Clear();
@@ -97,9 +121,20 @@ namespace QuanLyQuanCafe
 
         private void Btn_Click(object sender, EventArgs e)
         {
+            if (focusTable!=null)
+            {
+                if (focusTable.Statuss.Equals("Trống"))
+                    focusButton.BackColor = Color.Aqua;
+                else focusButton.BackColor = Color.LightPink;
+            }
+
+            focusTable = (sender as Button).Tag as Table;
+            focusButton = sender as Button;
             int tbId = ((sender as Button).Tag as Table).ID;
             lsvBill.Tag = (sender as Button).Tag;
             ShowBill(tbId);
+            (sender as Button).BackColor = Color.Red;
+
         }
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -107,10 +142,17 @@ namespace QuanLyQuanCafe
         }
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccountFile f = new fAccountFile();
+            fAccountFile f = new fAccountFile(LoginAccount);
+            f.UpdateAccountt += f_UpdateAccount;
             f.ShowDialog();
 
         }
+
+        private void f_UpdateAccount(object sender, AccountEvent e)
+        {
+            thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản (" + e.Acc.DisplayName + ")";
+        }
+
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAdmin f = new fAdmin();
@@ -129,6 +171,8 @@ namespace QuanLyQuanCafe
         private void btnAddFood_Click(object sender, EventArgs e)
         {
             Table table = lsvBill.Tag as Table;
+            if (table == null)
+                return;
             int idBill = BillDAO.Instance.GetUnCheckBillIdByTableID(table.ID);
             int foodID = (cbbFood.SelectedItem as Food).ID;
             int count = (int)nmrFoodCount.Value;
@@ -146,23 +190,51 @@ namespace QuanLyQuanCafe
             LoadTable();
 
         }
+        //private void button1_click(object sender, eventargs e)
+        //{
+        //    txttotalpricebill.text.tostring()
+        //    string[] b = txttotalpricebill.text.split(',');
+        //    float a = float.parse(b[0], system.globalization.cultureinfo.getcultureinfo("de-de").numberformat);
+        //    messagebox.show(a.tostring());
+        //}
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
             Table table = lsvBill.Tag as Table;
+            if (table == null)
+                return;
+
             int idBill = BillDAO.Instance.GetUnCheckBillIdByTableID(table.ID);
             int discount = (int)nmrDiscount.Value;
-            if(idBill!=-1)
+            float totalPrice = float.Parse(txtTotalPriceBill.Text.Split(',')[0], CultureInfo.GetCultureInfo("de-DE").NumberFormat);
+            float finalTotalPrice = totalPrice * (100 - discount) / 100;
+            if (idBill!=-1)
             {
-                if(MessageBox.Show("Bạn muốn thanh toán bàn " + table.ID,"Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+               
+                if(MessageBox.Show("Bàn thanh toán: " + (table.ID + 1) + "\nTổng tiền: " + txtTotalPriceBill.Text + "\nDiscount: " + nmrDiscount.Value + "%\nSố tiền thanh toán: " + finalTotalPrice.ToString("c",new CultureInfo("vi-VN")),"Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    BillDAO.Instance.CheckOut(idBill, discount);
+                    BillDAO.Instance.CheckOut(idBill, discount  ,finalTotalPrice );
                     ShowBill(table.ID);
                     LoadTable();
+                    if (focusButton != null)
+                    {
+                        focusButton = null;
+                        focusTable = null;
+                        
+                    }
                 }
             }
         }
+
         #endregion
 
+        private void btnSwitchTable_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
