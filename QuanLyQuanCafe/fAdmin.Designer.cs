@@ -59,7 +59,6 @@
             this.txtFoodID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dtgvFood = new System.Windows.Forms.DataGridView();
             this.tabPCategoryFood = new System.Windows.Forms.TabPage();
             this.panel18 = new System.Windows.Forms.Panel();
             this.dtgvCategoryFood = new System.Windows.Forms.DataGridView();
@@ -115,6 +114,7 @@
             this.btnUpdateAccount = new System.Windows.Forms.Button();
             this.btnDeleteAccount = new System.Windows.Forms.Button();
             this.btnAddAcount = new System.Windows.Forms.Button();
+            this.dtgvFood = new System.Windows.Forms.DataGridView();
             this.tabCBill.SuspendLayout();
             this.tabPBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -130,7 +130,6 @@
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvFood)).BeginInit();
             this.tabPCategoryFood.SuspendLayout();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCategoryFood)).BeginInit();
@@ -155,6 +154,7 @@
             this.panel26.SuspendLayout();
             this.panel27.SuspendLayout();
             this.panel28.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvFood)).BeginInit();
             this.SuspendLayout();
             // 
             // tabCBill
@@ -168,7 +168,7 @@
             this.tabCBill.Location = new System.Drawing.Point(0, 0);
             this.tabCBill.Name = "tabCBill";
             this.tabCBill.SelectedIndex = 0;
-            this.tabCBill.Size = new System.Drawing.Size(549, 575);
+            this.tabCBill.Size = new System.Drawing.Size(671, 575);
             this.tabCBill.TabIndex = 0;
             // 
             // tabPBill
@@ -246,7 +246,7 @@
             this.tabPFood.Location = new System.Drawing.Point(4, 22);
             this.tabPFood.Name = "tabPFood";
             this.tabPFood.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPFood.Size = new System.Drawing.Size(541, 549);
+            this.tabPFood.Size = new System.Drawing.Size(663, 549);
             this.tabPFood.TabIndex = 1;
             this.tabPFood.Text = "Thức ăn";
             this.tabPFood.UseVisualStyleBackColor = true;
@@ -330,9 +330,9 @@
             this.panel4.Controls.Add(this.panel9);
             this.panel4.Controls.Add(this.panel8);
             this.panel4.Controls.Add(this.panel7);
-            this.panel4.Location = new System.Drawing.Point(291, 72);
+            this.panel4.Location = new System.Drawing.Point(369, 72);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(244, 474);
+            this.panel4.Size = new System.Drawing.Size(286, 474);
             this.panel4.TabIndex = 1;
             // 
             // panel10
@@ -341,7 +341,7 @@
             this.panel10.Controls.Add(this.label4);
             this.panel10.Location = new System.Drawing.Point(3, 126);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(237, 35);
+            this.panel10.Size = new System.Drawing.Size(280, 35);
             this.panel10.TabIndex = 5;
             // 
             // nmrFoodPrice
@@ -353,7 +353,7 @@
             0,
             0});
             this.nmrFoodPrice.Name = "nmrFoodPrice";
-            this.nmrFoodPrice.Size = new System.Drawing.Size(164, 20);
+            this.nmrFoodPrice.Size = new System.Drawing.Size(204, 20);
             this.nmrFoodPrice.TabIndex = 1;
             // 
             // label4
@@ -372,7 +372,7 @@
             this.panel9.Controls.Add(this.label3);
             this.panel9.Location = new System.Drawing.Point(3, 85);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(237, 35);
+            this.panel9.Size = new System.Drawing.Size(277, 35);
             this.panel9.TabIndex = 4;
             // 
             // cbbFoodCategory
@@ -380,7 +380,7 @@
             this.cbbFoodCategory.FormattingEnabled = true;
             this.cbbFoodCategory.Location = new System.Drawing.Point(70, 8);
             this.cbbFoodCategory.Name = "cbbFoodCategory";
-            this.cbbFoodCategory.Size = new System.Drawing.Size(165, 21);
+            this.cbbFoodCategory.Size = new System.Drawing.Size(204, 21);
             this.cbbFoodCategory.TabIndex = 1;
             // 
             // label3
@@ -399,7 +399,7 @@
             this.panel8.Controls.Add(this.label2);
             this.panel8.Location = new System.Drawing.Point(4, 44);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(237, 35);
+            this.panel8.Size = new System.Drawing.Size(282, 35);
             this.panel8.TabIndex = 3;
             // 
             // txtFoodName
@@ -408,7 +408,7 @@
             this.txtFoodName.Location = new System.Drawing.Point(69, 6);
             this.txtFoodName.Name = "txtFoodName";
             this.txtFoodName.ReadOnly = true;
-            this.txtFoodName.Size = new System.Drawing.Size(165, 26);
+            this.txtFoodName.Size = new System.Drawing.Size(210, 26);
             this.txtFoodName.TabIndex = 1;
             // 
             // label2
@@ -427,7 +427,7 @@
             this.panel7.Controls.Add(this.label1);
             this.panel7.Location = new System.Drawing.Point(4, 3);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(237, 35);
+            this.panel7.Size = new System.Drawing.Size(279, 35);
             this.panel7.TabIndex = 2;
             // 
             // txtFoodID
@@ -436,8 +436,9 @@
             this.txtFoodID.Location = new System.Drawing.Point(69, 6);
             this.txtFoodID.Name = "txtFoodID";
             this.txtFoodID.ReadOnly = true;
-            this.txtFoodID.Size = new System.Drawing.Size(165, 26);
+            this.txtFoodID.Size = new System.Drawing.Size(207, 26);
             this.txtFoodID.TabIndex = 1;
+            this.txtFoodID.TextChanged += new System.EventHandler(this.txtFoodID_TextChanged);
             // 
             // label1
             // 
@@ -454,17 +455,8 @@
             this.panel3.Controls.Add(this.dtgvFood);
             this.panel3.Location = new System.Drawing.Point(3, 72);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(282, 474);
+            this.panel3.Size = new System.Drawing.Size(360, 474);
             this.panel3.TabIndex = 0;
-            // 
-            // dtgvFood
-            // 
-            this.dtgvFood.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvFood.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgvFood.Location = new System.Drawing.Point(0, 0);
-            this.dtgvFood.Name = "dtgvFood";
-            this.dtgvFood.Size = new System.Drawing.Size(282, 474);
-            this.dtgvFood.TabIndex = 0;
             // 
             // tabPCategoryFood
             // 
@@ -984,11 +976,21 @@
             this.btnAddAcount.Text = "Thêm";
             this.btnAddAcount.UseVisualStyleBackColor = true;
             // 
+            // dtgvFood
+            // 
+            this.dtgvFood.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvFood.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvFood.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgvFood.Location = new System.Drawing.Point(0, 0);
+            this.dtgvFood.Name = "dtgvFood";
+            this.dtgvFood.Size = new System.Drawing.Size(360, 474);
+            this.dtgvFood.TabIndex = 0;
+            // 
             // fAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 575);
+            this.ClientSize = new System.Drawing.Size(671, 575);
             this.Controls.Add(this.tabCBill);
             this.Name = "fAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1014,7 +1016,6 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvFood)).EndInit();
             this.tabPCategoryFood.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvCategoryFood)).EndInit();
@@ -1048,6 +1049,7 @@
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             this.panel28.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvFood)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1073,7 +1075,6 @@
         private System.Windows.Forms.Button btnAddFood;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dtgvFood;
         private System.Windows.Forms.TabPage tabPCategoryFood;
         private System.Windows.Forms.TabPage tabPTable;
         private System.Windows.Forms.TabPage tabPAccount;
@@ -1141,5 +1142,6 @@
         private System.Windows.Forms.Button btnUpdateAccount;
         private System.Windows.Forms.Button btnDeleteAccount;
         private System.Windows.Forms.Button btnAddAcount;
+        private System.Windows.Forms.DataGridView dtgvFood;
     }
 }
