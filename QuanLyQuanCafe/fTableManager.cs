@@ -118,7 +118,29 @@ namespace QuanLyQuanCafe
         #endregion
 
         #region Event
+        private void btnSwitchTable_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void thêmMónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnAddFood_Click(this, new EventArgs ());
+        }
+
+        private void thanhToánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnCheckOut_Click(this, new EventArgs());
+        }
+        private void đăngXuấtToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            đăngXuấtToolStripMenuItem_Click(this, new EventArgs());
+        }
         private void Btn_Click(object sender, EventArgs e)
         {
             if (focusTable!=null)
@@ -247,16 +269,9 @@ namespace QuanLyQuanCafe
             }
         }
 
+
         #endregion
 
-        private void btnSwitchTable_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void thôngTinTàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
