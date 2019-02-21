@@ -15,6 +15,7 @@ namespace QuanLyQuanCafe
 {
     public partial class fAdmin : Form
     {
+        private int numRow = 5;
         Account loginAccount;
         Account LoginAccount
         {
@@ -45,7 +46,7 @@ namespace QuanLyQuanCafe
 
             LoadDateTimePickerBill();
             LoadListFood();
-            LoadListBillByDate(dtpkFrontDate.Value, dtpkToDate.Value);
+            ChangePage((int)nmrPage.Value);
             LoaddAccount();
             LoadCategoryIntoCbb(cbbFoodCategory);
             AddFoodBinding();
@@ -65,6 +66,10 @@ namespace QuanLyQuanCafe
         void LoadListBillByDate(DateTime checkIn, DateTime checkOut)
         {
             dtgvBill.DataSource = BillDAO.Instance.GetListBillByDate(checkIn, checkOut);
+        }
+        void LoadListBillByDataAndPage(DateTime checkIn,DateTime checkOut, int page,int numRow)
+        {
+            dtgvBill.DataSource = BillDAO.Instance.GetListBillByDateAndPage(checkIn, checkOut, page, numRow);
         }
         void LoadDateTimePickerBill()
         {
@@ -127,9 +132,53 @@ namespace QuanLyQuanCafe
             }
             else MessageBox.Show("Lỗi khi đặt lại");
         }
+        bool ChangePage(int page)
+        {
+            try
+            {
+                LoadListBillByDataAndPage(dtpkFrontDate.Value, dtpkToDate.Value, page, numRow);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         #endregion
 
         #region event
+        private void btnFirstPage_Click(object sender, EventArgs e)
+        {
+            if (ChangePage(1))
+            {
+                nmrPage.Value = 1;
+            }
+        }
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            int arrowPage = (int)nmrPage.Value -1;
+            if (nmrPage.Value > 1)
+                if (ChangePage(arrowPage))
+                {
+                    nmrPage.Value = arrowPage;
+                }
+        }
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            int arrowPage = (int)nmrPage.Value + 1;
+            if (ChangePage(arrowPage))
+            {
+                nmrPage.Value = arrowPage;
+            }
+        }
+        private void btnLastPage_Click(object sender, EventArgs e)
+        {
+            int arrowPage = - 1;
+            if (ChangePage(arrowPage))
+            {
+                nmrPage.Value = 11111111;
+            }
+        }
         private void btnViewBill_Click(object sender, EventArgs e)
         {
             LoadListBillByDate(dtpkFrontDate.Value, dtpkToDate.Value);
@@ -267,6 +316,7 @@ namespace QuanLyQuanCafe
             string userName = txtUserName.Text;
             ResetPassword(userName);
         }
+
         #endregion
 
 

@@ -88,5 +88,9 @@ namespace QuanLyQuanCafe.DAO
         {
             return DataProvider.Instance.ExecuteQuery("exec USP_GetListBillByDate @checkIn , @checkOut", new object[] { checkIn, checkOut });
         }
+        public DataTable GetListBillByDateAndPage(DateTime checkIn,DateTime checkOut,int page, int numRow)
+        {
+            return DataProvider.Instance.ExecuteQuery("exec USP_GetListBillByDateAndPage @checkIn , @checkOut , @page , @numRow", new object[] { checkIn, checkOut, page, numRow });
+        }
     }
 }

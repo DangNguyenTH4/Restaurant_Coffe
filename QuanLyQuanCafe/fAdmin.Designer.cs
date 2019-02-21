@@ -35,6 +35,12 @@
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.dtpkFrontDate = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.nmrPage = new System.Windows.Forms.NumericUpDown();
+            this.btnLastPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
             this.tabPFood = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -119,6 +125,7 @@
             this.tabPBill.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvBill)).BeginInit();
             this.tabPFood.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -220,6 +227,12 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.nmrPage);
+            this.panel1.Controls.Add(this.btnLastPage);
+            this.panel1.Controls.Add(this.btnNextPage);
+            this.panel1.Controls.Add(this.btnPreviousPage);
+            this.panel1.Controls.Add(this.btnFirstPage);
             this.panel1.Controls.Add(this.dtgvBill);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(3, 46);
@@ -227,14 +240,85 @@
             this.panel1.Size = new System.Drawing.Size(657, 500);
             this.panel1.TabIndex = 0;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(261, 468);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(32, 13);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Page";
+            // 
+            // nmrPage
+            // 
+            this.nmrPage.Location = new System.Drawing.Point(306, 465);
+            this.nmrPage.Maximum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            0});
+            this.nmrPage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmrPage.Name = "nmrPage";
+            this.nmrPage.Size = new System.Drawing.Size(33, 20);
+            this.nmrPage.TabIndex = 5;
+            this.nmrPage.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Location = new System.Drawing.Point(577, 453);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(75, 42);
+            this.btnLastPage.TabIndex = 4;
+            this.btnLastPage.Text = "Last";
+            this.btnLastPage.UseVisualStyleBackColor = true;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Location = new System.Drawing.Point(485, 453);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(75, 42);
+            this.btnNextPage.TabIndex = 3;
+            this.btnNextPage.Text = "Next";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.Location = new System.Drawing.Point(97, 453);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(75, 42);
+            this.btnPreviousPage.TabIndex = 2;
+            this.btnPreviousPage.Text = "Previous";
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Location = new System.Drawing.Point(5, 453);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(75, 42);
+            this.btnFirstPage.TabIndex = 1;
+            this.btnFirstPage.Text = "First";
+            this.btnFirstPage.UseVisualStyleBackColor = true;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
+            // 
             // dtgvBill
             // 
             this.dtgvBill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgvBill.Dock = System.Windows.Forms.DockStyle.Top;
             this.dtgvBill.Location = new System.Drawing.Point(0, 0);
             this.dtgvBill.Name = "dtgvBill";
-            this.dtgvBill.Size = new System.Drawing.Size(657, 500);
+            this.dtgvBill.Size = new System.Drawing.Size(657, 449);
             this.dtgvBill.TabIndex = 0;
             // 
             // tabPFood
@@ -1005,6 +1089,8 @@
             this.tabPBill.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvBill)).EndInit();
             this.tabPFood.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -1148,5 +1234,11 @@
         private System.Windows.Forms.Button btnAddAcount;
         private System.Windows.Forms.DataGridView dtgvFood;
         private System.Windows.Forms.TextBox txtAccountType;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown nmrPage;
+        private System.Windows.Forms.Button btnLastPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.Button btnFirstPage;
     }
 }
